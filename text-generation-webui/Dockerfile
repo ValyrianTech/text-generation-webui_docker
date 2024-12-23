@@ -37,5 +37,5 @@ RUN /bin/bash -c "./docker_setup.sh"
 EXPOSE 7860
 
 # Set the entrypoint to run one_click.py
-ENTRYPOINT ["/bin/bash", "-c"]
-CMD ["source /opt/conda/etc/profile.d/conda.sh && conda activate /app/installer_files/env && cd /app/text-generation-webui && python one_click.py"]
+ENTRYPOINT ["/bin/bash"]
+CMD ["-l"]
