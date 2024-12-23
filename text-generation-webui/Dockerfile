@@ -24,7 +24,7 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86
 WORKDIR /app
 
 # Clone the repository first to get all files
-RUN git clone https://github.com/ValyrianTech/text-generation-webui_with_pixtral.git .
+RUN git clone https://github.com/WouterGlorieux/text-generation-webui.git .
 
 # Copy our modified setup script
 COPY docker_setup.sh ./
