@@ -20,6 +20,10 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86
     bash ~/miniconda.sh -b -p $CONDA_DIR && \
     rm ~/miniconda.sh
 
+# Initialize conda in .bashrc
+RUN echo '. /opt/conda/etc/profile.d/conda.sh' >> ~/.bashrc && \
+    echo 'conda activate base' >> ~/.bashrc
+
 # Set working directory
 WORKDIR /app
 
