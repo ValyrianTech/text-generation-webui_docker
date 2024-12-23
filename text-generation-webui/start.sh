@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Source conda
-. /opt/conda/etc/profile.d/conda.sh
+echo "Starting Text Generation Web UI... (this might take a minute or two)"
 
 # Keep container running
 while true; do

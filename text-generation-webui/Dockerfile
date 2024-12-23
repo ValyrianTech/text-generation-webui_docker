@@ -12,14 +12,14 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-
 # Set working directory
 WORKDIR /workspace
 
-# Clone the repository
-RUN git clone https://github.com/WouterGlorieux/text-generation-webui.git . && \
+# Clone the repository and run setup
+RUN git clone https://github.com/WouterGlorieux/text-generation-webui.git && \
     cd text-generation-webui && \
-    start_linux.sh
+    chmod +x start_linux.sh && \
+    ./start_linux.sh
 
 # Copy our start script
 COPY start.sh ./
