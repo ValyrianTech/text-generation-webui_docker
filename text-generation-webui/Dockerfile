@@ -36,6 +36,7 @@ RUN chmod +x start.sh
 
 # Expose the default port
 EXPOSE 7860
+ENV LAUNCH_AFTER_INSTALL=true
 
 # Use our start.sh as entrypoint
 ENTRYPOINT ["./start.sh"]
