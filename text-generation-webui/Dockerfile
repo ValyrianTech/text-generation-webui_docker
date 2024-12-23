@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV CONDA_DIR=/opt/conda
 ENV PATH=$CONDA_DIR/bin:$PATH
 ENV PYTHONNOUSERSITE=1
+ENV LAUNCH_AFTER_INSTALL=false
 
 # Install necessary system packages
 RUN apt-get update && apt-get install -y \
@@ -27,19 +28,19 @@ RUN echo '. /opt/conda/etc/profile.d/conda.sh' >> ~/.bashrc && \
 # Set working directory
 WORKDIR /app
 
-# Clone the repository first to get all files
+# Clone the repository
 RUN git clone https://github.com/WouterGlorieux/text-generation-webui.git .
 
-# Copy our modified setup script
-COPY docker_setup.sh ./
-COPY start.sh ./
-RUN chmod +x docker_setup.sh start.sh
+# Make start script executable and run it
+RUN chmod +x start_linux.sh && \
+    ./start_linux.sh
 
-# Run the setup script (this handles conda env creation and dependencies)
-RUN /bin/bash -c "./docker_setup.sh"
+# Copy our start script
+COPY start.sh ./
+RUN chmod +x start.sh
 
 # Expose the default port
 EXPOSE 7860
 
-# Use start.sh as entrypoint
+# Use our start.sh as entrypoint
 ENTRYPOINT ["./start.sh"]
