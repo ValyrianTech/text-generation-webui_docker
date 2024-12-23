@@ -16,6 +16,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     git \
     build-essential \
+    cmake \
+    pkg-config \
+    libcairo2-dev \
+    libglib2.0-0 \
+    python3-dev \
+    gcc \
+    g++ \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -35,8 +42,15 @@ ENV CONDA_DEFAULT_ENV=textgen
 ENV PYTHONNOUSERSITE=1
 ENV PATH="/opt/conda/envs/textgen/bin:$PATH"
 
-# Activate environment and install dependencies
-RUN conda run -n textgen pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 && \
+# Install PyTorch first
+RUN conda run -n textgen pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+# Install basic dependencies first
+RUN conda run -n textgen pip3 install wheel setuptools ninja
+
+# Install requirements in smaller chunks to avoid memory issues
+COPY requirements.txt /app/requirements.txt
+RUN conda run -n textgen pip3 install -r requirements.txt --no-deps && \
     conda run -n textgen pip3 install -r requirements.txt
 
 # Expose the default port
