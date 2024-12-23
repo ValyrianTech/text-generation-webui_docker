@@ -3,7 +3,9 @@ FROM ubuntu:22.04
 
 # Set environment variables
 ENV LAUNCH_AFTER_INSTALL=false \
-    GPU_CHOICE=N
+    GPU_CHOICE=N \
+    PATH="/root/miniconda3/bin:${PATH}" \
+    CONDA_AUTO_UPDATE_CONDA=false
 
 # Install necessary system packages
 RUN apt-get update && apt-get install -y \
@@ -12,6 +14,12 @@ RUN apt-get update && apt-get install -y \
     curl \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Miniconda
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    bash ~/miniconda.sh -b -p /root/miniconda3 && \
+    rm ~/miniconda.sh && \
+    conda init bash
 
 # Set working directory
 WORKDIR /workspace
