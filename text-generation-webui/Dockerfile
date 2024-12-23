@@ -28,7 +28,8 @@ RUN git clone https://github.com/ValyrianTech/text-generation-webui_with_pixtral
 
 # Copy our modified setup script
 COPY docker_setup.sh ./
-RUN chmod +x docker_setup.sh
+COPY start.sh ./
+RUN chmod +x docker_setup.sh start.sh
 
 # Run the setup script (this handles conda env creation and dependencies)
 RUN /bin/bash -c "./docker_setup.sh"
@@ -36,6 +37,5 @@ RUN /bin/bash -c "./docker_setup.sh"
 # Expose the default port
 EXPOSE 7860
 
-# Set the entrypoint to run one_click.py
-ENTRYPOINT ["/bin/bash"]
-CMD ["-l"]
+# Use start.sh as entrypoint
+ENTRYPOINT ["./start.sh"]
