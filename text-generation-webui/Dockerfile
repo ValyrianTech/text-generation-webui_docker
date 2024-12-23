@@ -36,6 +36,6 @@ RUN /bin/bash -c "./docker_setup.sh"
 # Expose the default port
 EXPOSE 7860
 
-# Set the entrypoint to run the web UI
+# Set the entrypoint to run one_click.py
 ENTRYPOINT ["/bin/bash", "-c"]
-CMD ["source /opt/conda/etc/profile.d/conda.sh && conda activate /app/installer_files/env && python server.py"]
+CMD ["source /opt/conda/etc/profile.d/conda.sh && conda activate /app/installer_files/env && python one_click.py"]

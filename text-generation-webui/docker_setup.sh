@@ -5,14 +5,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 # deactivate existing conda envs as needed to avoid conflicts
 { conda deactivate && conda deactivate && conda deactivate; } 2> /dev/null
 
-OS_ARCH=$(uname -m)
-case "${OS_ARCH}" in
-    x86_64*)    OS_ARCH="x86_64";;
-    arm64*)     OS_ARCH="aarch64";;
-    aarch64*)   OS_ARCH="aarch64";;
-    *)          echo "Unknown system architecture: $OS_ARCH! This script runs only on x86_64 or arm64" && exit
-esac
-
 # config
 INSTALL_DIR="$(pwd)/installer_files"
 CONDA_ROOT_PREFIX="/opt/conda"  # Changed to match Dockerfile
@@ -40,5 +32,5 @@ export CUDA_HOME="$CUDA_PATH"
 source "$CONDA_ROOT_PREFIX/etc/profile.d/conda.sh"
 conda activate "$INSTALL_ENV_DIR"
 
-# setup installer env without running the server
-python one_click.py --skip-launch
+# Install any required packages here
+pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu121
