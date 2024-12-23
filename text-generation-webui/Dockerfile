@@ -2,7 +2,8 @@
 FROM ubuntu:22.04
 
 # Set environment variables
-ENV LAUNCH_AFTER_INSTALL=false
+ENV LAUNCH_AFTER_INSTALL=false \
+    GPU_CHOICE=N
 
 # Install necessary system packages
 RUN apt-get update && apt-get install -y \
