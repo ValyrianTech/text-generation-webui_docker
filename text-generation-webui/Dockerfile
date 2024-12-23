@@ -1,4 +1,13 @@
+FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04 as cuda
 FROM continuumio/miniconda3:latest
+
+# Copy CUDA runtime from NVIDIA image
+COPY --from=cuda /usr/local/cuda-12.1 /usr/local/cuda-12.1
+
+# Set CUDA environment variables
+ENV PATH=/usr/local/cuda-12.1/bin:${PATH}
+ENV LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64:${LD_LIBRARY_PATH}
+ENV CUDA_HOME=/usr/local/cuda-12.1
 
 # Prevent interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -8,9 +17,6 @@ RUN apt-get update && apt-get install -y \
     git \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
-
-# Install CUDA toolkit
-RUN conda install -y -c conda-forge cudatoolkit=12.1
 
 # Set working directory
 WORKDIR /app
@@ -27,10 +33,7 @@ SHELL ["/bin/bash", "-c"]
 # Set environment variables
 ENV CONDA_DEFAULT_ENV=textgen
 ENV PYTHONNOUSERSITE=1
-ENV CUDA_PATH="/opt/conda/envs/textgen"
-ENV CUDA_HOME="$CUDA_PATH"
 ENV PATH="/opt/conda/envs/textgen/bin:$PATH"
-ENV LD_LIBRARY_PATH="$CUDA_HOME/lib64:$LD_LIBRARY_PATH"
 
 # Activate environment and install dependencies
 RUN conda run -n textgen pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 && \
