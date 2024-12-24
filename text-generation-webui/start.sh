@@ -12,7 +12,7 @@ echo "Conda environment activated"
 cd /workspace/text-generation-webui
 echo "Changed directory to text-generation-webui"
 
-python one_click.py --listen --extensions openai
+python one_click.py --listen --extensions openai ${UI_ARGS:-}
 echo "Started Text Generation Web UI"
 
 # Keep container running
