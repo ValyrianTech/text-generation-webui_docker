@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 
 # Set environment variables
 ENV LAUNCH_AFTER_INSTALL=false \
-    GPU_CHOICE=N \
+    GPU_CHOICE=A \
     PATH="/root/miniconda3/bin:${PATH}" \
     CONDA_AUTO_UPDATE_CONDA=false
 
