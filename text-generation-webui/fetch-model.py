@@ -11,8 +11,6 @@ parser.add_argument('model', type=str)
 parser.add_argument('output_folder', type=str)
 args = parser.parse_args()
 
-SCRIPT_DIR = "/root/scripts"
-
 model = args.model.strip()
 output_folder = args.output_folder
 
@@ -35,7 +33,7 @@ while not success and retry_count < 10:
         # We've got an HF model, eg 'TheBloke/WizardLM-7B-Uncensored'
         print(f"Passed HF model: {model}", flush=True)
         model_folder = model.replace('/','_')
-        run = subprocess.run(f'{SCRIPT_DIR}/download_model.py --threads 2 --output "{output_folder}/{model_folder}" "{args.model}"', shell=True, check=False)
+        run = subprocess.run(f'/download_model.py --threads 2 --output "{output_folder}/{model_folder}" "{args.model}"', shell=True, check=False)
         write = model_folder
     else:
         print(f"Error, {model} does not seem to be in a supported format.")
