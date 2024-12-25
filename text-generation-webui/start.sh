@@ -2,6 +2,10 @@
 
 echo "Starting Text Generation Web UI... (this might take a minute or two)"
 
+# Move text-generation-webui's folder to $VOLUME so models and all config will persist
+/textgen-on-workspace.sh
+
+
 # Initialize conda for shell script
 eval "$(conda shell.bash hook)"
 echo "Conda initialized"
