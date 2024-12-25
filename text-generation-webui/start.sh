@@ -15,6 +15,15 @@ fi
 # Move text-generation-webui's folder to $VOLUME so models and all config will persist
 /textgen-on-workspace.sh
 
+# If passed a MODEL variable from Runpod template, start it downloading
+# This will block the UI until completed
+# MODEL can be a HF repo name, eg 'TheBloke/guanaco-7B-GPTQ'
+# or it can be a direct link to a single GGML file, eg 'https://huggingface.co/TheBloke/tulu-7B-GGML/resolve/main/tulu-7b.ggmlv3.q2_K.bin'
+if [[ $MODEL ]]; then
+    echo "Downloading model: $MODEL"
+	/root/fetch-model.py "$MODEL" /workspace/text-generation-webui/models >>/workspace/logs/fetch-model.log 2>&1
+fi
+
 
 # Initialize conda for shell script
 eval "$(conda shell.bash hook)"

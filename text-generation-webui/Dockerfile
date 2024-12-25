@@ -28,6 +28,8 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 WORKDIR /root
 
 COPY --chmod=755 textgen-on-workspace.sh /textgen-on-workspace.sh
+COPY --chmod=755 fetch-model.py /fetch-model.py
+COPY --chmod=755 download_model.py /download_model.py
 
 # Clone the repository and run setup
 RUN git clone https://github.com/oobabooga/text-generation-webui.git && \
