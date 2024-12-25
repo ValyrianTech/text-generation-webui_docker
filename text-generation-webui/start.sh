@@ -22,7 +22,7 @@ fi
 if [[ $MODEL ]]; then
     echo "Downloading model: $MODEL"
     mkdir -p /workspace/logs
-	/root/fetch-model.py "$MODEL" /workspace/text-generation-webui/models >>/workspace/logs/fetch-model.log 2>&1
+	/fetch-model.py "$MODEL" /workspace/text-generation-webui/models >>/workspace/logs/fetch-model.log 2>&1
 fi
 
 
