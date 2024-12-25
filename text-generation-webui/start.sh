@@ -21,6 +21,7 @@ fi
 # or it can be a direct link to a single GGML file, eg 'https://huggingface.co/TheBloke/tulu-7B-GGML/resolve/main/tulu-7b.ggmlv3.q2_K.bin'
 if [[ $MODEL ]]; then
     echo "Downloading model: $MODEL"
+    mkdir -p /workspace/logs
 	/root/fetch-model.py "$MODEL" /workspace/text-generation-webui/models >>/workspace/logs/fetch-model.log 2>&1
 fi
 
