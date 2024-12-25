@@ -15,6 +15,13 @@ fi
 # Move text-generation-webui's folder to $VOLUME so models and all config will persist
 /textgen-on-workspace.sh
 
+# Initialize conda for shell script
+eval "$(conda shell.bash hook)"
+echo "Conda initialized"
+
+conda activate /workspace/text-generation-webui/installer_files/env
+echo "Conda environment activated"
+
 # If passed a MODEL variable from Runpod template, start it downloading
 # This will block the UI until completed
 # MODEL can be a HF repo name, eg 'TheBloke/guanaco-7B-GPTQ'
@@ -24,14 +31,6 @@ if [[ $MODEL ]]; then
     mkdir -p /workspace/logs
 	/fetch-model.py "$MODEL" /workspace/text-generation-webui/models >>/workspace/logs/fetch-model.log 2>&1
 fi
-
-
-# Initialize conda for shell script
-eval "$(conda shell.bash hook)"
-echo "Conda initialized"
-
-conda activate /workspace/text-generation-webui/installer_files/env
-echo "Conda environment activated"
 
 cd /workspace/text-generation-webui
 echo "Changed directory to text-generation-webui"
