@@ -2,6 +2,16 @@
 
 echo "Starting Text Generation Web UI... (this might take a minute or two)"
 
+# Set up SSH
+if [[ $PUBLIC_KEY ]]; then
+	mkdir -p ~/.ssh
+	chmod 700 ~/.ssh
+	cd ~/.ssh
+	echo "$PUBLIC_KEY" >>authorized_keys
+	chmod 700 -R ~/.ssh
+	service ssh start
+fi
+
 # Move text-generation-webui's folder to $VOLUME so models and all config will persist
 /textgen-on-workspace.sh
 
