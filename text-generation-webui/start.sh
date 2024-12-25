@@ -29,7 +29,7 @@ echo "Conda environment activated"
 if [[ $MODEL ]]; then
     echo "Downloading model: $MODEL"
     mkdir -p /workspace/logs
-	/fetch-model.py "$MODEL" /workspace/text-generation-webui/models >>/workspace/logs/fetch-model.log 2>&1
+	/fetch-model.py "$MODEL" /workspace/text-generation-webui/models 2>&1 | tee -a /workspace/logs/fetch-model.log
 fi
 
 cd /workspace/text-generation-webui
