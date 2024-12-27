@@ -2,6 +2,9 @@
 
 A ready-to-use text generation interface powered by the popular text-generation-webui, optimized for RunPod deployment.
 
+You can deploy this template on RunPod using the following link:
+[Deploy on RunPod](https://runpod.io/console/deploy?template=bzhe0deyqj&ref=2vdt3dn9)
+
 ## ✨ Features
 
 - 💬 Text-generation-webui v2.0
@@ -18,7 +21,7 @@ A ready-to-use text generation interface powered by the popular text-generation-
 
 ## 💾 Persistence
 
-Your models, configurations, and chat history are automatically saved in the workspace volume. They will persist across pod restarts and updates.
+Your models, configurations, and chat history are automatically saved in the Network Volume if you use one. They will persist across pod restarts and updates.
 
 if you need to install additional packages, you can start a web terminal and connect to the pod's container, or SSH into it.
 You will need to activate the conda environment first:
