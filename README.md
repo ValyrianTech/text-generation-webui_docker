@@ -58,4 +58,6 @@ This template supports two environment variables which you can specify via the *
   * For a guide to valid parameters, please see: https://github.com/oobabooga/text-generation-webui/tree/main#basic-settings
   * Example value: `--n-gpu-layers 100 --threads 1` to ensure a GGML model is fully loaded onto GPU, with optimal performance parameters.
   * Note: no checking for valid parameters is currently done. So if invalid params are entered, it can block text-generation-webui from launching.
+   * If the UI does not launch, SSH in and run:
+      * `tail -100f /workspace/logs/text-generation-webui.log` to see what the UI is doing.
 
