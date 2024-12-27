@@ -35,6 +35,14 @@ fi
 cd /workspace/text-generation-webui
 echo "Changed directory to text-generation-webui"
 
+# Check if we have a model file to auto-load
+if [[ -f /tmp/text-gen-model ]]; then
+    # If this file exists, we successfully downloaded a model file or folder
+    # Therefore we auto load this model
+    ARGS=(--model "$(</tmp/text-gen-model)")
+    UI_ARGS="${UI_ARGS} ${ARGS[@]}"
+fi
+
 python one_click.py --listen --extensions openai ${UI_ARGS:-}
 echo "Started Text Generation Web UI"
 
