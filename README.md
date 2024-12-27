@@ -2,7 +2,7 @@
 
 A ready-to-use text generation interface powered by the popular text-generation-webui, optimized for RunPod deployment.
 
-You can deploy this template on RunPod using the following link:
+You can deploy this template on RunPod using the following link and picking one of the NVIDIA GPU instances:
 [Deploy on RunPod](https://runpod.io/console/deploy?template=bzhe0deyqj&ref=2vdt3dn9)
 
 ## ✨ Features
