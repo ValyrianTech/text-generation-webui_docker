@@ -61,17 +61,3 @@ This template supports two environment variables which you can specify via the *
    * If the UI does not launch, SSH in and run:
       * `tail -100f /workspace/logs/text-generation-webui.log` to see what the UI is doing.
 
-## Server logs
-
-The logs from launching text-generation-webui are stored at `/workspace/log/text-generation-webui.log`
-
-You can read them by SSHing in and typing:
-```
-cat /workspace/text-generation-webui.log
-```
-
-Or to watch them live:
-```
-tail -100f /workspace/text-generation-webui.log
-```
-
