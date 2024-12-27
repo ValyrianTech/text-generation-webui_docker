@@ -20,6 +20,14 @@ A ready-to-use text generation interface powered by the popular text-generation-
 
 Your models, configurations, and chat history are automatically saved in the workspace volume. They will persist across pod restarts and updates.
 
+if you need to install additional packages, you can start a web terminal and connect to the pod's container, or SSH into it.
+You will need to activate the conda environment first:
+
+```
+conda activate /workspace/text-generation-webui/installer_files/env
+```
+
+
 ## 🔗 API Access
 
 The service includes an OpenAI-compatible API endpoint, allowing you to integrate it with other applications that support OpenAI's API format.
