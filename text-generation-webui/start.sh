@@ -22,18 +22,22 @@ echo "Conda initialized"
 conda activate /workspace/text-generation-webui/installer_files/env
 echo "Conda environment activated"
 
+
+# Create logs directory if it doesn't exist
+mkdir -p /workspace/logs
+
 # If passed a MODEL variable from Runpod template, start it downloading
 # This will block the UI until completed
 # MODEL can be a HF repo name, eg 'TheBloke/guanaco-7B-GPTQ'
 # or it can be a direct link to a single GGML file, eg 'https://huggingface.co/TheBloke/tulu-7B-GGML/resolve/main/tulu-7b.ggmlv3.q2_K.bin'
 if [[ $MODEL ]]; then
     echo "Downloading model: $MODEL"
-    mkdir -p /workspace/logs
 	/fetch-model.py "$MODEL" /workspace/text-generation-webui/models 2>&1 | tee -a /workspace/logs/fetch-model.log
 fi
 
 cd /workspace/text-generation-webui
 echo "Changed directory to text-generation-webui"
+
 
 # Check if we have a model file to auto-load
 if [[ -f /tmp/text-gen-model ]]; then
@@ -43,7 +47,7 @@ if [[ -f /tmp/text-gen-model ]]; then
     UI_ARGS="${UI_ARGS} ${ARGS[@]}"
 fi
 
-python one_click.py --listen --extensions openai ${UI_ARGS:-}
+(python one_click.py --listen --extensions openai ${UI_ARGS:-} 2>&1) | tee -a /workspace/logs/text-generation-webui.log
 echo "Started Text Generation Web UI"
 
 # Keep container running
