@@ -1,4 +1,4 @@
-# Text Generation WebUI v2.0 for RunPod
+# Text Generation WebUI v3.19 for RunPod
 
 A ready-to-use text generation interface powered by the popular text-generation-webui, optimized for RunPod deployment.
 
@@ -7,7 +7,7 @@ You can deploy this template on RunPod using the following link and picking one 
 
 ## ✨ Features
 
-- 💬 Text-generation-webui v2.0
+- 💬 Text-generation-webui v3.19
 - 🔗 OpenAI-compatible API
 - 📦 Persistent storage for your models and chat history
 - 🔒 Optional secure SSH access
@@ -48,8 +48,8 @@ This template supports two environment variables which you can specify via the *
     * `TheBloke/vicuna-13b-v1.3-GPTQ`
     * `https://huggingface.co/TheBloke/vicuna-13b-v1.3-GGML/resolve/main/vicuna-13b-v1.3.ggmlv3.q4_K_M.bin`
   * When a `MODEL` value is passed, the following will happen:
-    * On Docker launch, the passed model will be automatically downloaded to `/workspace/text-generation-webui/models`
-    * **Note: this may take some time and the UI will not be available until the model has finished downloading.**
+    * On Docker launch, the passed model will be automatically downloaded to `/workspace/text-generation-webui/user_data/models`
+    * **Note: this may take some time and the UI will not be available until the model has finished downloading.
     * Once the model is downloaded, text-generation-webui will load this model automatically
     * To monitor the progress of the download, you can SSH in and run:
       * `tail -100f /workspace/logs/fetch-model.log`
