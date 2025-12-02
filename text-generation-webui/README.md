@@ -52,7 +52,7 @@ docker run -d \
 
 - `/workspace/text-generation-webui`: Persistent storage location
 - `/root/text-generation-webui`: Symbolic link to workspace
-- Models are stored in `/workspace/text-generation-webui/models`
+- Models are stored in `/workspace/text-generation-webui/user_data/models`
 
 ## Model Management
 

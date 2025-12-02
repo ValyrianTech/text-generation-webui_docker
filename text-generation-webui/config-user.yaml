@@ -1,0 +1,15 @@
+MaziyarPanahi_miqu-1-70b-sf-GPTQ$:
+  loader: ExLlamav2_HF
+  ctx_size: 32768
+  cache_type: fp16
+  gpu_split: ''
+  alpha_value: 1
+  compress_pos_emb: 1
+  num_experts_per_token: 2
+  autosplit: true
+  enable_tp: false
+  no_flash_attn: false
+  no_xformers: false
+  no_sdpa: false
+  cfg_cache: false
+  no_use_fast: false
