@@ -37,6 +37,10 @@ RUN git clone https://github.com/oobabooga/text-generation-webui.git && \
     chmod +x start_linux.sh && \
     ./start_linux.sh
 
+# Copy user config into the models directory so it is available under
+# /workspace/text-generation-webui/user_data/models at runtime
+COPY config-user.yaml /root/text-generation-webui/user_data/models/config-user.yaml
+
 # Copy our start script
 COPY start.sh ./
 RUN chmod +x start.sh

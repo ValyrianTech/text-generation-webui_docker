@@ -32,7 +32,7 @@ mkdir -p /workspace/logs
 # or it can be a direct link to a single GGML file, eg 'https://huggingface.co/TheBloke/tulu-7B-GGML/resolve/main/tulu-7b.ggmlv3.q2_K.bin'
 if [[ $MODEL ]]; then
     echo "Downloading model: $MODEL"
-	/fetch-model.py "$MODEL" /workspace/text-generation-webui/models 2>&1 | tee -a /workspace/logs/fetch-model.log
+	/fetch-model.py "$MODEL" /workspace/text-generation-webui/user_data/models 2>&1 | tee -a /workspace/logs/fetch-model.log
 fi
 
 cd /workspace/text-generation-webui
